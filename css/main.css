@@ -1,0 +1,14 @@
+#map-template {
+  height: 80vh;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.footer img {
+    width: 100px;
+    padding: 0px 10px 0px 10px;
+}
