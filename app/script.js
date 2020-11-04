@@ -8,9 +8,10 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 // Marcadores
 // Creamos marcador manual con coprdenadas fijas
 const markerIcon = L.marker([51.5, -0.09]);
-const latitude2 = 0;
-const longitude2 = 0;
-markerIcon.setLatLng([latitude2, longitude2]);
+const coordLat = 0;
+const coordLong = 0;
+
+markerIcon.setLatLng([coordLat, coordLong]);
 
 // Diseño de iconos leaflet obj
 const myIcon = L.icon({
@@ -37,7 +38,7 @@ const issIconBig = L.icon({
 // Añadimos marcadores
 map.addLayer(markerIcon);
 markerIcon.bindPopup(
-  '<a href="https://walkexperience.org/">WalkExperience</a>'
+  'here is the intersection of 0 degrees latitude (known as the Equator) and 0 degrees longitude (known as the Prime Meridian)'
 );
 
 const myIconMarker = L.marker([41.5, 1.5], { icon: myIcon }).addTo(map); //ecuador 0 0
@@ -50,29 +51,32 @@ myIconMarker.bindPopup(
 
 // Petición API ISS
 const url_apiISS = "http://api.open-notify.org/iss-now.json";
+const markerISS = L.marker([0, 0], { icon: myIcon }).addTo(map);
 
 async function getISS() {
   const res = await fetch(url_apiISS);
   const data = await res.json();
   const timeSeconds = data.timestamp;
   const { latitude, longitude } = data.iss_position;
-
-  // Transformar string substring() devuelve la parte de string entre los índices inicial y final, o hasta el final de la cadena. Así se muestran menos decimales en lat y lng
-  const latitudeDos =
+  markerISS.setLatLng([latitude, longitude]);
+  console.log(typeof(latitude));
+  
+  //Transformar string substring() devuelve la parte de string entre los índices inicial y final, o hasta el final de la cadena. Así se muestran menos decimales en lat y lng
+  const latitudeText =
     latitude.charAt(0) == "-"
       ? latitude.substring(0, 6)
       : latitude.substring(0, 5);
-  console.log(latitudeDos);
-  const longitudeDos =
+  console.log(latitudeText);
+  const longitudeText =
     longitude.charAt(0) == "-"
       ? longitude.substring(0, 6)
       : longitude.substring(0, 5);
-  console.log(longitudeDos);
-  document.getElementById("lat").textContent = latitudeDos;
-  document.getElementById("lng").textContent = longitudeDos;
+  console.log(longitudeText);
+  document.getElementById("lat").textContent = latitudeText;
+  document.getElementById("lng").textContent = longitudeText;
 
-  // Creamos marcador ISS
-  const markerISS = L.marker([latitude, longitude], { icon: issIcon });
+  // marker is moved via setLatLng or by dragging. Old and new coordinates are included in event arguments as oldLatLng, latlng.
+
 
   // Captamos evento zoomend - in order to change the size of the markers
   // Resize marker icons depending on zoom level issue #1 -I did not resolve it
@@ -83,7 +87,6 @@ async function getISS() {
     console.log(currentZoom);
     if (map.getZoom() > 4) {
       markerISS.setIcon(issIconBig);
-      //alert('works')
     } else {
       markerISS.setIcon(issIcon);
     }
@@ -116,7 +119,37 @@ async function getISS() {
   setTimeout(getISS, 2000);
 }
 
+
+const api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
+let firstTime = true;
+const marker = L.marker([10, 10], { icon: issIcon }).addTo(map);
+
+async function getISS2() {
+  const response = await fetch(api_url);
+  const data = await response.json();
+  const { latitude, longitude } = data;
+  console.log(typeof(latitude));
+
+  marker.setLatLng([latitude, longitude]);
+  if (firstTime) {
+    map.setView([latitude, longitude], 2);
+    firstTime = false;
+  }
+  document.getElementById('lat2').textContent = latitude.toFixed(2);
+  document.getElementById('lng2').textContent = longitude.toFixed(2);
+}
+
+getISS2();
+setInterval(getISS2, 1000);
+
+
+// errors 
 getISS().catch((err) => {
+  console.log("In catch !!!");
+  console.log(err);
+});
+
+getISS2().catch((err) => {
   console.log("In catch !!!");
   console.log(err);
 });
@@ -124,3 +157,9 @@ getISS().catch((err) => {
 // "loop" with setTimeout() after the fetching is done
 // If the request takes more than 1 second (maybe a slow server or internet connection issues) over a long period of time, setInterval() will push lots of callback calls to the event queue.
 setTimeout(getISS, 2000);
+
+// Set init view map with center ISS -setView()
+const viewInit = document.getElementById("init-view");
+viewInit.addEventListener("click", function () {
+  map.setView([20, 50], 2);
+});
