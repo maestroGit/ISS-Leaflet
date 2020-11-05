@@ -78,7 +78,8 @@ async function getISS() {
   document.getElementById("lng").textContent = longitudeText;
 
   // marker is moved via setLatLng or by dragging. Old and new coordinates are included in event arguments as oldLatLng, latlng.
-
+  // Always set the view to current lat lon and zoom!
+  map.setView([latitude, longitude], map.getZoom());
   // Captamos evento zoomend - in order to change the size of the markers
   // Resize marker icons depending on zoom level issue #1 -I did not resolve it
   // I Create another biggest marker that will be changed on the map zooming
