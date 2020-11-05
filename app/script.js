@@ -38,7 +38,7 @@ const issIconBig = L.icon({
 // Añadimos marcadores
 map.addLayer(markerIcon);
 markerIcon.bindPopup(
-  'here is the intersection of 0 degrees latitude (known as the Equator) and 0 degrees longitude (known as the Prime Meridian)'
+  "here is the intersection of 0 degrees latitude (known as the Equator) and 0 degrees longitude (known as the Prime Meridian)"
 );
 
 const myIconMarker = L.marker([41.5, 1.5], { icon: myIcon }).addTo(map); //ecuador 0 0
@@ -59,8 +59,10 @@ async function getISS() {
   const timeSeconds = data.timestamp;
   const { latitude, longitude } = data.iss_position;
   markerISS.setLatLng([latitude, longitude]);
-  console.log(typeof(latitude));
-  
+  console.log(typeof latitude);
+  const latnum = +latitude;
+  console.log(latnum + ": latnum");
+  console.log(typeof latnum);
   //Transformar string substring() devuelve la parte de string entre los índices inicial y final, o hasta el final de la cadena. Así se muestran menos decimales en lat y lng
   const latitudeText =
     latitude.charAt(0) == "-"
@@ -76,7 +78,6 @@ async function getISS() {
   document.getElementById("lng").textContent = longitudeText;
 
   // marker is moved via setLatLng or by dragging. Old and new coordinates are included in event arguments as oldLatLng, latlng.
-
 
   // Captamos evento zoomend - in order to change the size of the markers
   // Resize marker icons depending on zoom level issue #1 -I did not resolve it
@@ -119,8 +120,7 @@ async function getISS() {
   setTimeout(getISS, 2000);
 }
 
-
-const api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
+const api_url = "https://api.wheretheiss.at/v1/satellites/25544";
 let firstTime = true;
 const marker = L.marker([10, 10], { icon: issIcon }).addTo(map);
 
@@ -128,22 +128,21 @@ async function getISS2() {
   const response = await fetch(api_url);
   const data = await response.json();
   const { latitude, longitude } = data;
-  console.log(typeof(latitude));
+  console.log(typeof latitude);
 
   marker.setLatLng([latitude, longitude]);
   if (firstTime) {
     map.setView([latitude, longitude], 2);
     firstTime = false;
   }
-  document.getElementById('lat2').textContent = latitude.toFixed(2);
-  document.getElementById('lng2').textContent = longitude.toFixed(2);
+  document.getElementById("lat2").textContent = latitude.toFixed(2);
+  document.getElementById("lng2").textContent = longitude.toFixed(2);
 }
 
 getISS2();
 setInterval(getISS2, 1000);
 
-
-// errors 
+// errors
 getISS().catch((err) => {
   console.log("In catch !!!");
   console.log(err);
@@ -162,4 +161,30 @@ setTimeout(getISS, 2000);
 const viewInit = document.getElementById("init-view");
 viewInit.addEventListener("click", function () {
   map.setView([20, 50], 2);
+  noDisplay();
 });
+
+// set Geolocation.getCurrentPosition(): Retrieves the device's current location.
+const viewGeolocation = document.getElementById("view-geolocation");
+viewGeolocation.addEventListener("click", function () {
+  if ("geolocation" in navigator) {
+    console.log("geolocation available");
+    navigator.geolocation.getCurrentPosition((position) => {
+      lat = position.coords.latitude;
+      lon = position.coords.longitude;
+      console.log(lat, lon);
+     
+      const mapAbsolute = L.map("map-absolute").setView([lat, lon], 15);
+      const attribution =
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+      const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+      const tiles = L.tileLayer(tileUrl, { attribution });
+      tiles.addTo(mapAbsolute);
+      const marker = L.marker([lat, lon]).addTo(mapAbsolute);
+    });
+  } else {
+    console.log("geolocation not available");
+  }
+});
+
+
