@@ -10,10 +10,10 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 const markerIcon = L.marker([51.5, -0.09]);
 const coordLat = 0;
 const coordLong = 0;
-
 markerIcon.setLatLng([coordLat, coordLong]);
 
 // Diseño de iconos leaflet obj
+// Mi icono
 const myIcon = L.icon({
   iconUrl:
     "https://walkexperience.org/wp-content/uploads/2020/06/Walk-logo-97.png",
@@ -21,6 +21,7 @@ const myIcon = L.icon({
   iconAnchor: [12, 25],
 });
 
+// ISS icono
 const issIcon = L.icon({
   iconUrl:
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/International-Space-Station_mark.svg/268px-International-Space-Station_mark.svg.png",
@@ -28,6 +29,7 @@ const issIcon = L.icon({
   iconAnchor: [12, 45],
 });
 
+// ISS icono mayor
 const issIconBig = L.icon({
   iconUrl:
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/International-Space-Station_mark.svg/268px-International-Space-Station_mark.svg.png",
@@ -51,7 +53,7 @@ myIconMarker.bindPopup(
 
 // Petición API ISS
 const url_apiISS = "http://api.open-notify.org/iss-now.json";
-const markerISS = L.marker([0, 0], { icon: myIcon }).addTo(map);
+const markerISS = L.marker([0, 0], { icon: issIcon }).addTo(map);
 
 async function getISS() {
   const res = await fetch(url_apiISS);
@@ -123,25 +125,6 @@ async function getISS() {
 
 const api_url = "https://api.wheretheiss.at/v1/satellites/25544";
 let firstTime = true;
-const marker = L.marker([10, 10], { icon: issIcon }).addTo(map);
-
-async function getISS2() {
-  const response = await fetch(api_url);
-  const data = await response.json();
-  const { latitude, longitude } = data;
-  console.log(typeof latitude);
-
-  marker.setLatLng([latitude, longitude]);
-  if (firstTime) {
-    map.setView([latitude, longitude], 2);
-    firstTime = false;
-  }
-  document.getElementById("lat2").textContent = latitude.toFixed(2);
-  document.getElementById("lng2").textContent = longitude.toFixed(2);
-}
-
-getISS2();
-setInterval(getISS2, 1000);
 
 // errors
 getISS().catch((err) => {
@@ -149,10 +132,7 @@ getISS().catch((err) => {
   console.log(err);
 });
 
-getISS2().catch((err) => {
-  console.log("In catch !!!");
-  console.log(err);
-});
+
 
 // "loop" with setTimeout() after the fetching is done
 // If the request takes more than 1 second (maybe a slow server or internet connection issues) over a long period of time, setInterval() will push lots of callback calls to the event queue.
