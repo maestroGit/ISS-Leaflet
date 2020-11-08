@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="32x32" href="./img/Walk-logo.png">
-    <title> leaflet node</title>
+    <title>API - leaflet</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
         crossorigin="" />
@@ -18,10 +18,10 @@
 <body>
     <header>
         <nav class="menu">
-            <a class="logo" href="#">LOGO</a>
+            <a class="logo" href="#">Walk Experience</a>
             <a id="init-view" href="#">Init View</a>
             <a id="view-zoom" href="#">Zoom ISS</a>
-            <a id="view-extent" href="#">View Extent</a>
+            <a id="view-geolocation" href="#">Your position</a>
         </nav>
     </header>
 
@@ -43,6 +43,8 @@
     <main>
         </div>
         <div id="map-template"></div>
+        <div class="mapFlow" id= "map-absolute">
+        </div>
     </main>
     <footer>
         <div class="attribution">

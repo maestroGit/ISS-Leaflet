@@ -47,6 +47,14 @@ body {
   height: 72vh;
 }
 
+.mapFlow {
+  position: absolute;
+  top:50px;
+  left:150px;
+  width:180px;
+  height:180px;
+}
+
 .container-header {
   display: flex;
   justify-content: center;
