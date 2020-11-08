@@ -165,7 +165,7 @@ viewInit.addEventListener("click", function () {
   noDisplay();
 });
 
-// set Geolocation.getCurrentPosition(): Retrieves the device's current location.
+// Set Geolocation.getCurrentPosition(): Retrieves the device's current location.
 const viewGeolocation = document.getElementById("view-geolocation");
 viewGeolocation.addEventListener("click", function () {
   if ("geolocation" in navigator) {
