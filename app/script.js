@@ -6,18 +6,8 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map);
 
 // Marcador
-// Creamos marcador manual con coprdenadas fijas
-// const markerIcon = L.marker([]);
-// const coordLat = 0;
-// const coordLong = 0;
-//markerIcon.setLatLng([coordLat, coordLong]);
-// // Añadimos marcadores
-// map.addLayer(markerIcon);
-// markerIcon.bindPopup(
-//   "here is the intersection of 0 degrees latitude (known as the Equator) and 0 degrees longitude (known as the Prime Meridian)"
-// );
-
 // Diseño de iconos leaflet obj
+// Mi icono
 const myIcon = L.icon({
   iconUrl:
     "https://walkexperience.org/wp-content/uploads/2020/06/Walk-logo-97.png",
@@ -25,6 +15,7 @@ const myIcon = L.icon({
   iconAnchor: [12, 25],
 });
 
+// ISS icono
 const issIcon = L.icon({
   iconUrl:
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/International-Space-Station_mark.svg/268px-International-Space-Station_mark.svg.png",
@@ -32,6 +23,7 @@ const issIcon = L.icon({
   iconAnchor: [12, 45],
 });
 
+// ISS icono mayor
 const issIconBig = L.icon({
   iconUrl:
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/International-Space-Station_mark.svg/268px-International-Space-Station_mark.svg.png",
@@ -50,32 +42,37 @@ myIconMarker.bindPopup(
 //Con el protocolo webscket el servidor http envía eventos en tiempo real cuando los usuarios se conectan
 
 // Petición API ISS
-const url_apiISS = "http://api.open-notify.org/iss-now.json";
+//const url_apiISS = "http://api.open-notify.org/iss-now.json";git 
+const api_url = "https://api.wheretheiss.at/v1/satellites/25544";
 const markerISS = L.marker([0, 0], { icon: issIcon }).addTo(map);
 
 async function getISS() {
-  const res = await fetch(url_apiISS);
+  const res = await fetch(api_url);
   const data = await res.json();
   const timeSeconds = data.timestamp;
-  const { latitude, longitude } = data.iss_position;
+  const { latitude, longitude } = data;
   markerISS.setLatLng([latitude, longitude]);
   console.log(typeof latitude);
-  const latnum = +latitude;
-  console.log(latnum + ": latnum");
-  console.log(typeof latnum);
+  //const latnum = +latitude;
+  console.log(latitude+ ": latitud api");
+  
+  //Si recibo string en vez de number
   //Transformar string substring() devuelve la parte de string entre los índices inicial y final, o hasta el final de la cadena. Así se muestran menos decimales en lat y lng
-  const latitudeText =
-    latitude.charAt(0) == "-"
-      ? latitude.substring(0, 6)
-      : latitude.substring(0, 5);
-  console.log(latitudeText);
-  const longitudeText =
-    longitude.charAt(0) == "-"
-      ? longitude.substring(0, 6)
-      : longitude.substring(0, 5);
-  console.log(longitudeText);
-  document.getElementById("lat").textContent = latitudeText;
-  document.getElementById("lng").textContent = longitudeText;
+  // const latitudeText =
+  //   latitude.charAt(0) == "-"
+  //     ? latitude.substring(0, 6)
+  //     : latitude.substring(0, 5);
+  // console.log(latitudeText);
+  // const longitudeText =
+  //   longitude.charAt(0) == "-"
+  //     ? longitude.substring(0, 6)
+  //     : longitude.substring(0, 5);
+  // console.log(longitudeText);
+  // document.getElementById("lat").textContent = latitudeText;
+  // document.getElementById("lng").textContent = longitudeText;
+
+  document.getElementById("lat").textContent = latitude;
+  document.getElementById("lng").textContent = longitude;
 
   // marker is moved via setLatLng or by dragging. Old and new coordinates are included in event arguments as oldLatLng, latlng.
   // Always set the view to current lat lon and zoom!
@@ -121,9 +118,8 @@ async function getISS() {
   setTimeout(getISS, 2000);
 }
 
-const api_url = "https://api.wheretheiss.at/v1/satellites/25544";
+//const api_url = "https://api.wheretheiss.at/v1/satellites/25544";
 let firstTime = true;
-//const marker = L.marker([50, 10], { icon: issIcon }).addTo(map);
 
 // errors
 getISS().catch((err) => {
