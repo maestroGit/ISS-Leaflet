@@ -5,7 +5,9 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
-// Marcador
+
+
+
 // Diseño de iconos leaflet obj
 // Mi icono
 const myIcon = L.icon({
@@ -42,8 +44,10 @@ myIconMarker.bindPopup(
 //Con el protocolo webscket el servidor http envía eventos en tiempo real cuando los usuarios se conectan
 
 // Petición API ISS
+
 //const url_apiISS = "http://api.open-notify.org/iss-now.json";git 
 const api_url = "https://api.wheretheiss.at/v1/satellites/25544";
+
 const markerISS = L.marker([0, 0], { icon: issIcon }).addTo(map);
 
 async function getISS() {
@@ -126,6 +130,7 @@ getISS().catch((err) => {
   console.log("In catch !!!");
   console.log(err);
 });
+
 
 
 // "loop" with setTimeout() after the fetching is done
