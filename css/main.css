@@ -80,3 +80,47 @@ body {
   color: rgb(49, 165, 200);
   text-decoration: none;
 }
+
+/* MEDIA QUERY FOR SMALLER SCREENS */
+
+@media (max-width:820px) {
+
+  /* Nav */
+.menu {
+  display: flex;
+  flex-direction: column;
+   
+}
+
+.container-header img {
+  width: 50px;
+  padding: 0px 10px 0px 10px;
+}
+
+.mapFlow {
+  position: absolute;
+  top:10px;
+  left:10px;
+  width:120px;
+  height:150px;
+}
+
+.NoMapFlow {
+  display: none;
+}
+
+/* leaflet */
+
+.leaflet-control-attribution {
+  display: none;
+}
+
+.leaflet-control-zoom {
+  display: none;
+}
+
+
+
+
+  
+}

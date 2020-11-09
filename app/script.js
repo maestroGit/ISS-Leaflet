@@ -53,9 +53,7 @@ async function getISS() {
   const timeSeconds = data.timestamp;
   const { latitude, longitude } = data;
   markerISS.setLatLng([latitude, longitude]);
-  console.log(typeof latitude);
-  //const latnum = +latitude;
-  console.log(latitude+ ": latitud api");
+  //console.log(typeof latitude);
   
   //Si recibo string en vez de number
   //Transformar string substring() devuelve la parte de string entre los índices inicial y final, o hasta el final de la cadena. Así se muestran menos decimales en lat y lng
@@ -72,8 +70,8 @@ async function getISS() {
   // document.getElementById("lat").textContent = latitudeText;
   // document.getElementById("lng").textContent = longitudeText;
 
-  document.getElementById("lat").textContent = latitude;
-  document.getElementById("lng").textContent = longitude;
+  document.getElementById("lat").textContent = latitude.toFixed(2);
+  document.getElementById("lng").textContent = longitude.toFixed(2);
 
   // marker is moved via setLatLng or by dragging. Old and new coordinates are included in event arguments as oldLatLng, latlng.
   // Always set the view to current lat lon and zoom!
@@ -136,26 +134,37 @@ setTimeout(getISS, 2000);
 const viewInit = document.getElementById("init-view");
 viewInit.addEventListener("click", function () {
   map.setView([20, 50], 2);
-  noDisplay();
 });
 
+// Your Position
 // Set Geolocation.getCurrentPosition(): Retrieves the device's current location.
+const mapflowEl = document.getElementById("map-absolute");
+console.log(mapflowEl);
+
 const viewGeolocation = document.getElementById("view-geolocation");
+console.log(viewGeolocation);
 viewGeolocation.addEventListener("click", function () {
   if ("geolocation" in navigator) {
     console.log("geolocation available");
+    mapflowEl.setAttribute("class", "mapFlow");
     navigator.geolocation.getCurrentPosition((position) => {
       lat = position.coords.latitude;
       lon = position.coords.longitude;
-      console.log(lat, lon);
-     
-      const mapAbsolute = L.map("map-absolute").setView([lat, lon], 15);
+      //console.log(lat, lon);
+      
+      const mapAbsolute = L.map("map-absolute").setView([lat, lon], 5);
       const attribution =
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
       const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
       const tiles = L.tileLayer(tileUrl, { attribution });
       tiles.addTo(mapAbsolute);
       const marker = L.marker([lat, lon]).addTo(mapAbsolute);
+      
+      mapAbsolute.on('click', function(){
+        mapflowEl.classList.add("NoMapFlow");
+        mapAbsolute.remove();
+        //mapflowEl.setAttribute("class", "NoMapFlow");
+      })
     });
   } else {
     console.log("geolocation not available");
