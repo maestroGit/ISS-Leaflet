@@ -6,7 +6,8 @@
 }
 
 /* Global */
-body {
+html, body {
+  height: 100%;
   font-family: 'Merriweather Sans', sans-serif;
 }
 
@@ -66,6 +67,7 @@ body {
   padding: 0px 10px 0px 10px;
 }
 
+/* footer */
 .footer {
   display: flex;
   justify-content: center;
@@ -79,4 +81,35 @@ body {
 .attribution a {
   color: rgb(49, 165, 200);
   text-decoration: none;
+}
+
+/* modal windows */
+.modal {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(233, 160, 138, 0.801);
+  padding: 5%;
+}
+
+.modal_inner {
+  background-color: rgb(199, 42, 152);
+  width: 100%;
+  max-width: 800px;
+  border-radius: 4px;
+  
+}
+
+.modal_top {
+  background-color: grey;
+}
+
+.modal_btn {
+  width: 80px;
+  height: 20px;
 }
