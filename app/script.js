@@ -39,12 +39,8 @@ myIconMarker.bindPopup(
 //Con el protocolo webscket el servidor http envía eventos en tiempo real cuando los usuarios se conectan
 
 // Petición API ISS
+//const url_apiISS = "http://api.open-notify.org/iss-now.json";
 
-<<<<<<< HEAD
-//const url_apiISS = "http://api.open-notify.org/iss-now.json";git 
-=======
-//const url_apiISS = "http://api.open-notify.org/iss-now.json";git
->>>>>>> User-location
 const api_url = "https://api.wheretheiss.at/v1/satellites/25544";
 
 const markerISS = L.marker([0, 0], { icon: issIcon }).addTo(map);
@@ -55,15 +51,11 @@ async function getISS() {
   const timeSeconds = data.timestamp;
   const { latitude, longitude } = data;
   markerISS.setLatLng([latitude, longitude]);
-<<<<<<< HEAD
   //console.log(typeof latitude);
-  
-=======
   console.log(typeof latitude);
   //const latnum = +latitude;
   console.log(latitude + ": latitud api");
 
->>>>>>> User-location
   //Si recibo string en vez de number
   //Transformar string substring() devuelve la parte de string entre los índices inicial y final, o hasta el final de la cadena. Así se muestran menos decimales en lat y lng
   // const latitudeText =
@@ -145,41 +137,53 @@ viewInit.addEventListener("click", function () {
   map.setView([20, 50], 2);
 });
 
+// Modal window
+const closing = ()=>{
+  console.log("hi arrow function!");
+  modal.style.visibility="hidden";
+  //modal.style.background="red";
+}
+
+// Get elements
+const modal = document.getElementsByClassName('modal')[0];
+const closed = document.getElementById('closed');
+
+// Listen for closed modal window
+closed.addEventListener('click', closing);
+
+
 // Your Position
+// map pop up
 // Set Geolocation.getCurrentPosition(): Retrieves the device's current location.
-const mapflowEl = document.getElementById("map-absolute");
-console.log(mapflowEl);
+//  const mapflowEl = document.getElementById("map-absolute");
+//console.log(mapflowEl);
 
 const viewGeolocation = document.getElementById("view-geolocation");
-console.log(viewGeolocation);
+//console.log(viewGeolocation);
 viewGeolocation.addEventListener("click", function () {
   if ("geolocation" in navigator) {
     console.log("geolocation available");
-    mapflowEl.setAttribute("class", "mapFlow");
+    //mapflowEl.setAttribute("class", "mapFlow");
     navigator.geolocation.getCurrentPosition((position) => {
       lat = position.coords.latitude;
       lon = position.coords.longitude;
-<<<<<<< HEAD
-      //console.log(lat, lon);
-      
-      const mapAbsolute = L.map("map-absolute").setView([lat, lon], 5);
-=======
       console.log(lat, lon);
 
+      modal.style.visibility="visible";
+
       const mapAbsolute = L.map("map-absolute").setView([lat, lon], 15);
->>>>>>> User-location
       const attribution =
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
       const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
       const tiles = L.tileLayer(tileUrl, { attribution });
       tiles.addTo(mapAbsolute);
       const marker = L.marker([lat, lon]).addTo(mapAbsolute);
-      
-      mapAbsolute.on('click', function(){
+
+      mapAbsolute.on("click", function () {
         mapflowEl.classList.add("NoMapFlow");
         mapAbsolute.remove();
         //mapflowEl.setAttribute("class", "NoMapFlow");
-      })
+      });
     });
   } else {
     console.log("geolocation not available");

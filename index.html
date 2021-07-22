@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,6 @@
         crossorigin=""></script>
     <link rel="stylesheet" href="/css/main.css">
 </head>
-
 <body>
     <header>
         <nav class="menu">
@@ -24,8 +22,6 @@
             <a id="view-geolocation" href="#">Your position</a>
         </nav>
     </header>
-
-<<<<<<< HEAD
     <article>
         <div class="container-header">
             <div>
@@ -38,43 +34,24 @@
             <div>
                 <h1>Longitud <span id='lng'></span></h1>
             </div>
-        </article>
-=======
->>>>>>> User-location
+    </article>
     <main>
-        <article>
-            <div class="container-header">
-                <div>
-                    <h1>Latitud <span id='lat'></span></h1>
-
-                </div>
-                <div>
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/International-Space-Station_mark.svg/268px-International-Space-Station_mark.svg.png">
-                </div>
-                <div>
-                    <h1>Longitud <span id='lng'></span></h1>
-
-                </div>
-        </article>
-        </div>
         <div id="map-template"></div>
-        <div class="mapFlow" id="map-absolute">
+        <div class="mapFlow" id="map-absolute"></div>
+<div class="modal">
+    <h2>view-geolocation</h2>
+    <div class="modal_inner" >
+        
+        <div class="modal_top">
+            <h2>Sampel Modal</h2>
+            <img id="closed" src="img/exit_icon.png">
         </div>
-        <!-- html window modal -->
-        <!-- <div class="modal">
-            <div class="modal_inner">
-                <div class="modal_top">
-                    <div class="modal_title">Sample Modal</div>
-                </div>
-                <button class="modal_close" type="button"></button>
-                <div class="modal_content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus aliquam quibusdam porro id quia
-                        quis sunt, nemo dolorum dolore possimus dolorem voluptatum sequi nihil unde quas? Accusamus
-                        debitis ullam placeat.</p>
-                </div>
-            </div>
-        </div> -->
+        <div class="modal_content" id="map-absolute">
+        </div>
+        <button class="modal_btn" type="button">btn</button>
+    </div>
+    
+
         <footer>
             <div class="attribution">
                 Thanks to <a href="https://www.youtube.com/c/TheCodingTrain/community" target="_blank">The Coding

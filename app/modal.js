@@ -1,5 +1,4 @@
 // Modal window
-
 const closing = ()=>{
     console.log("hi arrow function!");
     modal.style.visibility="hidden";
