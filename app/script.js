@@ -30,8 +30,6 @@ const issIconBig = L.icon({
   iconAnchor: [12, 25],
 });
 
-
-
 const myIconMarker = L.marker([41.5, 1.5], { icon: myIcon }).addTo(map); //ecuador 0 0
 myIconMarker.bindPopup(
   '<a href="https://walkexperience.org/">WalkExperience</a>'
@@ -42,7 +40,11 @@ myIconMarker.bindPopup(
 
 // Petición API ISS
 
+<<<<<<< HEAD
 //const url_apiISS = "http://api.open-notify.org/iss-now.json";git 
+=======
+//const url_apiISS = "http://api.open-notify.org/iss-now.json";git
+>>>>>>> User-location
 const api_url = "https://api.wheretheiss.at/v1/satellites/25544";
 
 const markerISS = L.marker([0, 0], { icon: issIcon }).addTo(map);
@@ -53,8 +55,15 @@ async function getISS() {
   const timeSeconds = data.timestamp;
   const { latitude, longitude } = data;
   markerISS.setLatLng([latitude, longitude]);
+<<<<<<< HEAD
   //console.log(typeof latitude);
   
+=======
+  console.log(typeof latitude);
+  //const latnum = +latitude;
+  console.log(latitude + ": latitud api");
+
+>>>>>>> User-location
   //Si recibo string en vez de number
   //Transformar string substring() devuelve la parte de string entre los índices inicial y final, o hasta el final de la cadena. Así se muestran menos decimales en lat y lng
   // const latitudeText =
@@ -150,9 +159,15 @@ viewGeolocation.addEventListener("click", function () {
     navigator.geolocation.getCurrentPosition((position) => {
       lat = position.coords.latitude;
       lon = position.coords.longitude;
+<<<<<<< HEAD
       //console.log(lat, lon);
       
       const mapAbsolute = L.map("map-absolute").setView([lat, lon], 5);
+=======
+      console.log(lat, lon);
+
+      const mapAbsolute = L.map("map-absolute").setView([lat, lon], 15);
+>>>>>>> User-location
       const attribution =
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
       const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -170,5 +185,3 @@ viewGeolocation.addEventListener("click", function () {
     console.log("geolocation not available");
   }
 });
-
-
