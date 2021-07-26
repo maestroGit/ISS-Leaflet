@@ -18,7 +18,6 @@
 <body>
     <header>
         <nav class="menu">
-            <a class="logo" href="#">Where is the ISS?</a>
             <a id="init-view" href="#">Init View</a>
             <a id="view-zoom" href="#">Zoom ISS</a>
             <a id="view-geolocation" href="#">Your position</a>
@@ -26,14 +25,14 @@
     </header>
     <article>
         <div class="container-header">
-            <div>
+            <div class="container-coords">
                 <h1>Latitud <span id='lat'></span></h1>
             </div>
             <div>
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/International-Space-Station_mark.svg/268px-International-Space-Station_mark.svg.png">
             </div>
-            <div>
+            <div class="container-coords">
                 <h1>Longitud <span id='lng'></span></h1>
             </div>
     </article>
@@ -43,7 +42,7 @@
         <div class="modal">
             <div class="modal_inner">
                 <div class="modal_top">
-                    <h2>Navigation geolocation</h2>
+                    <h2>User geolocation</h2>
                     <img id="closed" src="img/exit_icon.png">
                 </div>
                 <div class="modal_content" id="map-user">
