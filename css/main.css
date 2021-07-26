@@ -48,14 +48,6 @@ body {
   height: 72vh;
 }
 
-/* .mapFlow { 
-  position: absolute;
-  top: 50px;
-  left: 150px;
-  width: 180px;
-  height: 180px;
-} */
-
 .container-header {
   display: flex;
   justify-content: center;
@@ -83,6 +75,10 @@ body {
   text-decoration: none;
 }
 
+.mapGlobal {
+  visibility: visible;
+}
+
 /* modal windows */
 .modal {
   visibility: hidden;
@@ -92,7 +88,7 @@ body {
   top: 20px;
   left: 0;
   width: 50vw;
-  height: 70vh;
+  height: 65vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,7 +98,7 @@ body {
 }
 
 .modal_inner {
-  background-color: rgb(199, 42, 152);
+  background-color: rgb(255, 255, 255);
   width: 100%;
   max-width: 800px;
   border-radius: 4px;
@@ -112,7 +108,7 @@ body {
   display: flex;
   justify-content: space-between;
   background-color: grey;
-  height: 60px;
+  height: 50px;
   margin: 2px;
   padding: 3px 3px;
 }
@@ -131,12 +127,8 @@ body {
 }
 
 .modal_content {
-  width: 100%;
+  width:100%;
   height: 250px;
-
-}
-
-.modal_btn {
-  width: 80px;
-  height: 20px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
 }
