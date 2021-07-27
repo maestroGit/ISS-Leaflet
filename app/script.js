@@ -5,7 +5,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
-const mapGlobal = document.getElementsByClassName('mapGlobal')[0];
+const mapGlobal = document.getElementsByClassName("mapGlobal")[0];
 
 // Diseño de iconos leaflet obj
 // Mi icono
@@ -162,12 +162,19 @@ viewGeolocation.addEventListener("click", function () {
       lat = position.coords.latitude;
       lon = position.coords.longitude;
       console.log(lat, lon);
-      
+
       //const mapGlobal = document.getElementsByClassName('mapGlobal')[0];
       mapGlobal.style.visibility = "hidden";
       modal.style.visibility = "visible";
-
       const mapAbsolute = L.map("map-user").setView([lat, lon], 4);
+
+      // Before initializing map check for is the map is already initiated or not
+      // _leaflet_id is a private property of the layers, which should never be handled by users of the Leaflet library unless strictly necessary
+      const container = L.DomUtil.get("map-user");
+      if (container != null) {
+        container._leaflet_id = null;
+      }
+
       const attribution =
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
       const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";

@@ -53,12 +53,11 @@ body {
 
 .container-coords {
   width: 100%;
-height: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 
 .container-header img {
   width: 90px;
@@ -89,7 +88,7 @@ justify-content: center;
 .modal {
   visibility: hidden;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   position: fixed;
   top: 0%;
   width: 100vw;
@@ -117,12 +116,18 @@ justify-content: center;
 }
 
 .modal_top h2 {
+  text-align: center;
+  justify-content: center;
+  margin: 2% 0% 0% 2%;
   color: white;
 }
 
 .modal_top img {
-  height: 50%;
+  height: 100%;
   cursor: pointer;
+  margin: 1% 1% 1% 0%;
+  /* margin-top: 2px;
+  margin-right: 5px; */
 }
 
 .modal_title {
@@ -131,7 +136,7 @@ justify-content: center;
 }
 
 .modal_content {
-  width:100%;
+  width: 100%;
   height: 250px;
   background-color: rgb(255, 255, 255);
   border-radius: 4px;
