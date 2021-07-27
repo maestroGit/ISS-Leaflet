@@ -16,7 +16,7 @@ body {
 .menu {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-around;
   flex-wrap: wrap;
   overflow: hidden;
   background-color: #161925;
@@ -49,6 +49,11 @@ body {
   justify-content: space-around;
   align-items: center;
   margin-top: 2px;
+  font-size: 10px;
+}
+
+#lat, #lng {
+  padding-left: 5px;
 }
 
 .container-coords {
@@ -59,9 +64,9 @@ body {
   justify-content: center;
 }
 
-.container-header img {
-  width: 90px;
-  padding: 10px 10px 0px 10px;
+.container-coords img {
+  width: 80px;
+  padding: 3px 10px 0px 10px;
 }
 
 /* footer */
