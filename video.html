@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player ISS</title>
+    <link rel="stylesheet" href="css/video.css">
+</head>
+
+<body>
+    <!-- Player -->
+    <main>
+        <div class="player">
+            <video controls>
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                <!-- fallback content here -->
+            </video>
+        <!-- Controls -->
+        <nav class="controls">
+            <button class="play" data-icon="P" aria-label="play pause toggle"></button>
+            <button class="stop" data-icon="S" aria-label="stop"></button>
+            <div class="timer">
+                <span aria-label="timer">00:00</span>
+            </div>
+            <button class="rwd" data-icon="B" aria-label="rewind"></button>
+            <button class="fwd" data-icon="F" aria-label="fast forward"></button>
+            <button class="backHome" data-icon="Back" aria-label="back home"></button>
+        </nav>
+    </main>
+    <script src="app/video.js"></script>
+</body>
+</html>
