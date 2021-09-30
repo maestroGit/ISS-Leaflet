@@ -4,11 +4,9 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
-
 const mapGlobal = document.getElementsByClassName("mapGlobal")[0];
 
 // Diseño de iconos leaflet obj
-// Mi icono
 const myIcon = L.icon({
   iconUrl:
     "https://walkexperience.org/wp-content/uploads/2020/06/Walk-logo-97.png",
@@ -16,7 +14,6 @@ const myIcon = L.icon({
   iconAnchor: [12, 25],
 });
 
-// ISS icono
 const issIcon = L.icon({
   iconUrl:
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/International-Space-Station_mark.svg/268px-International-Space-Station_mark.svg.png",
@@ -51,9 +48,11 @@ async function getISS() {
   const timeSeconds = data.timestamp;
   const { latitude, longitude } = data;
   markerISS.setLatLng([latitude, longitude]);
-  //console.log(typeof latitude);
+
+  //efecto track recorrido
+  efectTrack(latitude, longitude);
+
   console.log(typeof latitude);
-  //const latnum = +latitude;
   console.log(latitude + ": latitud api");
 
   //Si recibo string en vez de number
@@ -77,10 +76,10 @@ async function getISS() {
   // marker is moved via setLatLng or by dragging. Old and new coordinates are included in event arguments as oldLatLng, latlng.
   // Always set the view to current lat lon and zoom!
   map.setView([latitude, longitude], map.getZoom());
+
   // Captamos evento zoomend - in order to change the size of the markers
   // Resize marker icons depending on zoom level issue #1 -I did not resolve it
   // I Create another biggest marker that will be changed on the map zooming
-
   map.on("zoomend", function () {
     var currentZoom = map.getZoom();
     console.log(currentZoom);
@@ -136,6 +135,20 @@ const viewInit = document.getElementById("init-view");
 viewInit.addEventListener("click", function () {
   map.setView([20, 50], 2);
 });
+
+//
+const efectTrack = (latitude, longitude) => {
+  let latitudeTrack = latitude + 0.01;
+  let longitudeTrack = longitude + 0.1;
+  console.log(latitude + " y " + latitudeTrack);
+  const trackLat = [];
+  console.log(trackLat);
+  const arrayTrackLat = trackLat.push(latitudeTrack);
+  console.log(arrayTrackLat);
+  const trackLong = [longitudeTrack];
+  trackLong.push(longitudeTrack);
+  myIconMarker.setLatLng([latitudeTrack, longitudeTrack]);
+};
 
 // Modal window
 const closing = () => {
