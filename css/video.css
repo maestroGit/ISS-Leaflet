@@ -1,27 +1,27 @@
 /* General */
+
 @font-face {
-    font-family: 'HeydingsControlsRegular';
-    src: url('fonts/heydings_controls-webfont.eot');
-    src: url('fonts/heydings_controls-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/heydings_controls-webfont.woff') format('woff'),
-         url('fonts/heydings_controls-webfont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
- }
- 
- button:before {
-   font-family: HeydingsControlsRegular;
-   font-size: 20px;
-   position: relative;
-   content: attr(data-icon);
-   color: #aaa;
-   text-shadow: 1px 1px 0px black;
- }
+  font-family: "HeydingsControlsRegular";
+  src: url("fonts/heydings_controls-webfont.eot");
+  src: url("fonts/heydings_controls-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("fonts/heydings_controls-webfont.woff") format("woff"),
+    url("fonts/heydings_controls-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+button:before {
+  font-family: HeydingsControlsRegular;
+  font-size: 20px;
+  position: relative;
+  content: attr(data-icon);
+  color: #aaa;
+  text-shadow: 1px 1px 0px black;
+}
 
 /* Player */
-.player:hover .controls, player:focus .controls {
-    opacity: 1;
-  }
+
 /* Controls */
 .controls {
   visibility: hidden;
@@ -38,28 +38,51 @@
   display: flex;
 }
 
+.player:hover .controls, player:focus .controls {
+  opacity: 1;
+}
+
+@font-face {
+  font-family: 'HeydingsControlsRegular';
+  src: url('fonts/heydings_controls-webfont.eot');
+  src: url('fonts/heydings_controls-webfont.eot?#iefix') format('embedded-opentype'),
+       url('fonts/heydings_controls-webfont.woff') format('woff'),
+       url('fonts/heydings_controls-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+button:before {
+ font-family: HeydingsControlsRegular;
+ font-size: 20px;
+ position: relative;
+ content: attr(data-icon);
+ color: #aaa;
+ text-shadow: 1px 1px 0px black;
+}
+
 .timer {
-    line-height: 38px;
-    font-size: 10px;
-    font-family: monospace;
-    text-shadow: 1px 1px 0px black;
-    color: white;
-    flex: 5;
-    position: relative;
-  }
-  
-  .timer div {
-    position: absolute;
-    background-color: rgba(255,255,255,0.2);
-    left: 0;
-    top: 0;
-    width: 0;
-    height: 38px;
-    z-index: 2;
-  }
-  
-  .timer span {
-    position: absolute;
-    z-index: 3;
-    left: 19px;
-  }
+  line-height: 38px;
+  font-size: 10px;
+  font-family: monospace;
+  text-shadow: 1px 1px 0px black;
+  color: white;
+  flex: 5;
+  position: relative;
+}
+
+.timer div {
+  position: absolute;
+  background-color: rgba(255,255,255,0.2);
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 38px;
+  z-index: 2;
+}
+
+.timer span {
+  position: absolute;
+  z-index: 3;
+  left: 19px;
+}
