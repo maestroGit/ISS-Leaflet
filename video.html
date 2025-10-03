@@ -6,29 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Player ISS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" />
     <link rel="stylesheet" href="css/video.css">
 </head>
 
 <body>
     <!-- Player -->
-    <main>
-        <div class="player">
-            <video controls>
-                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-                <!-- fallback content here -->
-            </video>
+    <div class="player">
+        <!-- Simple video example -->
+<!-- 'Big Buck Bunny' licensed under CC 3.0 by the Blender foundation. Hosted by archive.org -->
+<!-- Poster from peach.blender.org -->
+<video controls
+src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"
+poster="https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217"
+width="620">
+
+Sorry, your browser doesn't support embedded videos,
+but don't worry, you can <a href="https://archive.org/details/BigBuckBunny_124">download it</a>
+and watch it with your favorite video player!
+
+</video>
         <!-- Controls -->
-        <nav class="controls">
-            <button class="play" data-icon="P" aria-label="play pause toggle"></button>
-            <button class="stop" data-icon="S" aria-label="stop"></button>
+        <div class="controls">
+            <button class="play" aria-label="play pause toggle"><i class="fas fa-play"></i></button>
+            <button class="stop" aria-label="stop"><i class="fas fa-stop"></i></button>
+            <input type="range" min="0" max="100" step="0.1" value="0" class="progress">
             <div class="timer">
                 <span aria-label="timer">00:00</span>
             </div>
-            <button class="rwd" data-icon="B" aria-label="rewind"></button>
-            <button class="fwd" data-icon="F" aria-label="fast forward"></button>
-            <button class="backHome" data-icon="Back" aria-label="back home"></button>
-        </nav>
-    </main>
+            <button class="rwd" aria-label="rewind"><i class="fas fa-backward"></i></button>
+            <button class="fwd" aria-label="fast forward"><i class="fas fa-backward"></i></button>
+            <button class="backHome" aria-label="back home"><i class="fas fa-map-marked-alt"></i></button>
+        </div>
+    </div>
+
+
+
+    
     <script src="app/video.js"></script>
 </body>
 </html>
