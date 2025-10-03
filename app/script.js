@@ -9,7 +9,7 @@ const mapGlobal = document.getElementsByClassName("mapGlobal")[0];
 // Diseño de iconos leaflet obj
 const myIcon = L.icon({
   iconUrl:
-    "https://walkexperience.org/wp-content/uploads/2020/06/Walk-logo-97.png",
+    "https://media.licdn.com/dms/image/v2/D4E35AQGYWbcdYpNt2Q/profile-framedphoto-shrink_100_100/profile-framedphoto-shrink_100_100/0/1696421606383?e=1726833600&v=beta&t=IErBlSIEGVxwUjNXVU9uDf4yfJfG_DBxOVnbN0VkzmY",
   iconSize: [24, 25], // size of the icon
   iconAnchor: [12, 25],
 });
